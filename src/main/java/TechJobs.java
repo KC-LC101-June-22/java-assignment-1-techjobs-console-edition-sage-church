@@ -39,7 +39,9 @@ public class TechJobs {
                 String columnChoice = getUserSelection("List", columnChoices);
 
                 if (columnChoice.equals("all")) {
+
                     printJobs(JobData.findAll());
+
                 } else {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
@@ -77,7 +79,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
+        // Put the choices in an ordered structure, so we can
         // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
@@ -120,6 +122,36 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.size() == 0) {
+            System.out.println("No Results");
+            return;
+        }
+
+        String jobInfoToPrint = "";
+        int counter = 1;
+
+        for (HashMap<String, String> job : someJobs) {
+
+            if (counter == 1) {
+                jobInfoToPrint += "\n*****";
+            } else {
+                jobInfoToPrint += "\n\n*****";
+            }
+
+            for (String jobField : job.keySet()) {
+
+                jobInfoToPrint += "\n";
+
+                jobInfoToPrint += jobField + ":" + " " + job.get(jobField);
+
+            }
+
+            jobInfoToPrint += "\n*****";
+
+            counter++;
+        }
+
+        System.out.println(jobInfoToPrint);
+
     }
 }

@@ -124,6 +124,7 @@ public class TechJobs {
 
         if (someJobs.size() == 0) {
             System.out.println("No Results");
+            return;
         }
 
         String jobInfoToPrint = "";
@@ -131,23 +132,23 @@ public class TechJobs {
 
         for (HashMap<String, String> job : someJobs) {
 
-            jobInfoToPrint += "\n*****";
+            if (counter == 1) {
+                jobInfoToPrint += "\n*****";
+            } else {
+                jobInfoToPrint += "\n\n*****";
+            }
 
-            for (String key : job.keySet()) {
+            for (String jobField : job.keySet()) {
 
                 jobInfoToPrint += "\n";
 
-                jobInfoToPrint += key + ":" + " " + job.get(key);
+                jobInfoToPrint += jobField + ":" + " " + job.get(jobField);
 
             }
 
-            if (counter == someJobs.size()) {
-                jobInfoToPrint += "\n*****";
-            } else {
-                jobInfoToPrint += "\n*****\n";
-            }
+            jobInfoToPrint += "\n*****";
 
-
+            counter++;
         }
 
         System.out.println(jobInfoToPrint);
